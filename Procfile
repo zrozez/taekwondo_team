@@ -1,0 +1,1 @@
+web: gunicorn sportsite-main.wsgi --log-file -
