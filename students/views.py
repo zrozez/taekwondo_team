@@ -22,11 +22,11 @@ class StudentViewSet(ModelViewSet):
     def reminder(self, receiver_email, message):
         student = self.get_object()
         env = environ.Env()
-        port = env('EMAIL_HOST_PORT')
+        port = 587
         smtp_server = "smtp.gmail.com"
-        sender_email = env('EMAIL_HOST_USER')
+        sender_email = 'r.sakhizova@gmail.com'
         receiver_email = receiver_email
-        password = env('EMAIL_HOST_PASSWORD')
+        password = 'Dom621205'
         message = message
         context = ssl.create_default_context()
         with smtplib.SMTP(smtp_server, port) as server:

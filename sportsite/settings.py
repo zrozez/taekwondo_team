@@ -117,10 +117,10 @@ WSGI_APPLICATION = 'sportsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('POSTGRES_DATABASE'),
-        'USER': env('POSTGRES_USER'),
-        'PASSWORD': env('POSTGRES_PASSWORD'),
-        'HOST': env('POSTGRES_HOST'),
+        'NAME': 'taekwondo',
+        'USER': 'temirlan',
+        'PASSWORD': 'temirlan',
+        'HOST': 'localhost',
         'PORT': 5432,
     }
 }
