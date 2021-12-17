@@ -120,8 +120,8 @@ DATABASES = {
         'NAME': 'taekwondo',
         'USER': 'temirlan',
         'PASSWORD': 'temirlan',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        # 'HOST': 'localhost',
+        # 'PORT': 5432,
     }
 }
 
