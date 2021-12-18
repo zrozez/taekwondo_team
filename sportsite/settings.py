@@ -125,12 +125,6 @@ DATABASES = {
 #         'PORT': 5432,
 #     }
 # }
-if os.environ.get('DATABASE_URL') is None:
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
-else:
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-# db_from_env = dj_database_url.config()
-# DATABASES['default'].update(db_from_env)
 
 
 # Password validation
