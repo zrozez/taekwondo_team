@@ -1,1 +1,0 @@
-web: gunicorn sportsite-main:sportsite-main

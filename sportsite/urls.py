@@ -38,6 +38,10 @@ urlpatterns = [
     path('api/v1/category/', include('category.urls')),
     path('api/v1/', include('students.urls')),
     path('rest-auth/', include('rest_auth.urls')),
-    path('', schema_view.with_ui(), name='schema-json'),
+    path('accounts/', include('accounts.urls')),
+    path('news/', include('news.urls')),
+    path('comments/', include('comments.urls')),
+    path('images/', include('images.urls')),
+    path('', schema_view.with_ui('swagger'), name='schema-json'),
 ]
 

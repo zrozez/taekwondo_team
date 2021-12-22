@@ -14,7 +14,7 @@ from .serializers import StudentSerializer, StudentDocumentSerializer
 class StudentViewSet(ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    permission_classes = [AllowAny, ]
+    permission_classes=[AllowAny, ]
     filter_backends=(DjangoFilterBackend, filters.SearchFilter)
     filter_fields = ['id', ]
     search_fields = ['surname', 'name', ]
@@ -39,9 +39,15 @@ class StudentViewSet(ModelViewSet):
 
 
     @action(methods=['get', ], detail=True)
-    def parent_reminder(self, request, *args, **kwargs):
+    def parent_reminder_prinyat(self, request, *args, **kwargs):
         student = self.get_object()
         self.reminder(student.email, f"Uchenik {student.surname} {student.name} uspeshno prinyat v gruppu!")
+        return Response({'success': True})
+
+    @action(methods=['get', ], detail=True)
+    def parent_reminder_color(self, request, *args, **kwargs):
+        student = self.get_object()
+        self.reminder(student.email, f"Uchenik {student.surname} {student.name} podnyal uroven na {student.color}!")
         return Response({'success': True})
 
     @action(methods=['get', ], detail=True)
@@ -53,4 +59,4 @@ class StudentViewSet(ModelViewSet):
 class StudentDocumentViewSet(ModelViewSet):
     queryset = StudentDocument.objects.all()
     serializer_class = StudentDocumentSerializer
-    permission_classes = [AllowAny, ]
+    permission_classes=[AllowAny, ]

@@ -1,7 +1,10 @@
-from .views import RegistrationAPIView
-from django.urls import path
+from rest_framework.routers import SimpleRouter
+from .views import UserViewSet
 
-urlpatterns = [
-    path('', RegistrationAPIView.as_view())
+router = SimpleRouter()
 
-]
+router.register('accounts', UserViewSet)
+
+urlpatterns = []
+
+urlpatterns += router.urls

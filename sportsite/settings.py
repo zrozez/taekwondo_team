@@ -10,19 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-from celery import local
+# from celery import local
 
-import environ
+# import environ
 from pathlib import Path
-import dj_database_url
+# import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-env = environ.Env()
-environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
+# env = environ.Env()
+# environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -54,6 +52,9 @@ INSTALLED_APPS = [
     'students',
     'django_filters',
     'corsheaders',
+    'images',
+    'news',
+    'comments',
 ]
 
 
@@ -66,7 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
 ]
 
 ROOT_URLCONF = 'sportsite.urls'
@@ -87,12 +88,20 @@ TEMPLATES = [
     },
 ]
 
-CORS_ORIGIN_WHITELIST = [
-    "https://example.com",
-    "https://sub.example.com",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "https://example.com",
+#     "https://sub.example.com",
+#     "http://localhost:8000",
+#     "http://127.0.0.1:8000",
+#     'http://zrozez.pythonanywhere.com/',
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOWED_ORIGINS = [
+#     'http://zrozez.pythonanywhere.com/',
+#     "http://localhost:8000",
+#     "http://127.0.0.1:8000",
+# ]
 
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -164,6 +173,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/home/zrozez/ada/static"
+# or, eg,
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -173,13 +185,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ]
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.TokenAuthentication',
+   ),
+   'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser'
+   ),
 }
 
-CELERY_BROKER_URL = 'redis://redis:6379/0'
-CELERY_BROKER_TRANSPORT = 'redis'
+# CELERY_BROKER_URL = 'redis://redis:6379/0'
+# CELERY_BROKER_TRANSPORT = 'redis'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
