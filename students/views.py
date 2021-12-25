@@ -26,7 +26,7 @@ class StudentViewSet(ModelViewSet):
         smtp_server = "smtp.gmail.com"
         sender_email = 'r.sakhizova@gmail.com'
         receiver_email = receiver_email
-        password = 'Dom621205'
+        password = ''
         message = message
         context = ssl.create_default_context()
         with smtplib.SMTP(smtp_server, port) as server:
